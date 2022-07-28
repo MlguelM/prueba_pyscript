@@ -16,7 +16,7 @@
       import pandas as pd
       from pyodide.http import open_url
 
-      url_content = open_url("https://githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
+      url_content = open_url("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
       df = pd.read_csv(url_content)
       #print(df)
       csv=Element('csv')
