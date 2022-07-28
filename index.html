@@ -11,11 +11,11 @@
   <body>
     <h1>Prueba Pandas</h1>
     <p id="csv"></p>
-    <strong>Gracias tia Raque, eres lo máximo!</strong>
+    
     
     <py-script>
       import pandas as pd
-      from pyodide import open_url
+      from pyodide.http import open_url
 
       url_content=open_url("https//githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
       df = pd.read_csv(url_content)
