@@ -1,27 +1,28 @@
 <html>
     <head>
+      <title>Prueba pandas</title>
       <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
       <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
       <py-env>
-        - numpy
-        - matplotlib
+        - pandas
       </py-env>
     </head>
 
   <body>
-    <h1>Let's plot random numbers</h1>
+    <h1>Prueba Pandas</h1>
+    <p id="csv"></p>
     <strong>Gracias tia Raque, eres lo máximo!</strong>
-    <div id="plot"></div>
-    <py-script output="plot">
-      import matplotlib.pyplot as plt
-      import numpy as np
+    
+    <py-script>
+      import pandas as pd
+      from pyodide import open_url
 
-      x = np.random.randn(100)
-      y = np.random.randn(100)
-
-      fig, ax = plt.subplots()
-      ax.scatter(x, y)
-      fig
+      url_content=open_url("https//githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
+      df = pd.read_csv(url_content)
+      #print(df)
+      csv=Element('csv')
+      csv.write(df.shape)
+      
     </py-script>
   </body>
 </html>
