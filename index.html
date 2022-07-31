@@ -14,13 +14,19 @@
        
     <py-script>
       import pandas as pd
+      import sqlite3 as sql
       from pyodide.http import open_url
 
       url_content = open_url("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
-      df = pd.read_csv(url_content)
-      #print(df)
+      diamonds = pd.read_csv(url_content)
+      
+      conn = sql.connect('diamonds.db')
+      diamonds.to_sql('diamonds', conn)
+
+      df = pd.read_sql('SELECT * FROM diamonds LIMIT 20', conn)
+
       csv=Element('csv')
-      csv.write(df.head())
+      csv.write(df.shape)
       
     </py-script>
   </body>
