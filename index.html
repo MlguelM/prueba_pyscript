@@ -17,16 +17,21 @@
       import sqlite3 as sql
       from pyodide.http import open_url
 
+      #read csv using pandas
       url_content = open_url("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/diamonds.csv")
       diamonds = pd.read_csv(url_content)
       
+      #create a sql table
       conn = sql.connect('diamonds.db')
       diamonds.to_sql('diamonds', conn)
 
-      df = pd.read_sql('SELECT * FROM diamonds LIMIT 20', conn)
+      #read from sql into a Pandas dataframe
+      df = pd.read_sql('SELECT * FROM diamonds LIMIT 7', conn)
 
+      #print the output
       csv=Element('csv')
-      csv.write(df.shape)
+      csv.write(df)
+      print(df.shape)
       
     </py-script>
   </body>
